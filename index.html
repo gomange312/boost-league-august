@@ -189,9 +189,13 @@ h1 .l2{
   box-shadow:0 10px 26px rgba(8,50,120,.18);text-align:center;
 }
 .cand-label{
-  margin:10px 0 2px;font-size:10.5px;font-weight:800;color:#9bb0ca;letter-spacing:.6px;
-  padding-top:9px;border-top:1px dashed #e2eaf4;
+  display:flex;align-items:center;gap:6px;margin:12px 0 6px;padding:7px 11px;
+  background:linear-gradient(135deg,#fff6dd,#ffeec2);
+  border:1.5px solid #f3d18a;border-radius:999px;
+  font-size:11.5px;font-weight:900;color:#8a6410;letter-spacing:-.3px;white-space:nowrap;
 }
+.cand-label .spark{font-size:13px;animation:flash 1.6s ease-in-out infinite}
+@keyframes flash{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.55;transform:scale(1.18)}}
 .rank-row.cand{background:none;font-size:12.5px;padding:7px 4px}
 .rank-row.cand .tro{width:26px}
 .rank-row.cand .tro .ic{font-size:15px;opacity:.5}
@@ -467,7 +471,7 @@ function render(){
            <div class="t">${esc(x.team)}</div><div class="v">${esc(x.memo)}</div></div>`).join('')
       : '<div class="empty">8월 실적 집계 후<br>순위가 공개됩니다</div>';
     if(cand.length){
-      inner += '<div class="cand-label">후보</div>' + cand.map(x=>
+      inner += '<div class="cand-label"><span class="spark">⚡</span>지금부터가 진짜 승부! TOP 3 추격권</div>' + cand.map(x=>
         `<div class="rank-row cand">
            <div class="tro"><span class="ic">🏅</span><span class="rk">${x.rank}</span></div>
            <div class="t">${esc(x.team)}</div><div class="v">${esc(x.memo)}</div></div>`).join('');
