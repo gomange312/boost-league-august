@@ -82,10 +82,12 @@ h1 .l2{
 .sub{margin-top:18px;color:#fff;font-size:15.5px;font-weight:600;text-shadow:0 2px 8px rgba(6,40,110,.4)}
 
 /* 달성 현황 */
+.status-wrap{text-align:center}
 .status{
-  margin:24px auto 18px;max-width:760px;background:rgba(255,255,255,.96);
-  border-radius:22px;padding:22px 40px;box-shadow:0 16px 38px rgba(8,50,120,.24);
-  display:flex;align-items:center;justify-content:center;gap:38px;flex-wrap:nowrap;
+  margin:24px auto 18px;max-width:100%;background:rgba(255,255,255,.96);
+  border-radius:22px;padding:20px 38px;box-shadow:0 16px 38px rgba(8,50,120,.24);
+  display:inline-flex;align-items:center;justify-content:center;gap:36px;flex-wrap:nowrap;
+  vertical-align:top;
 }
 .status .lab{font-size:13px;font-weight:800;color:#5b7ba8;letter-spacing:-.2px;white-space:nowrap;margin-bottom:3px}
 .status .val{
@@ -256,15 +258,17 @@ footer{margin-top:34px;text-align:center;color:rgba(255,255,255,.9);font-size:12
     <p class="sub">여름의 마지막 스퍼트 — 8월 한 달, 다시 한번 달려봅니다 🌊</p>
   </header>
 
-  <div class="status">
-    <div>
-      <div class="lab">SA 프로모션 현재 달성율</div>
-      <div class="val" id="rate">–</div>
-    </div>
-    <div class="divider"></div>
-    <div class="right">
-      <div class="lab">기준일</div>
-      <div class="upd" id="upd">불러오는 중…</div>
+  <div class="status-wrap">
+    <div class="status">
+      <div>
+        <div class="lab">SA 프로모션 현재 달성율</div>
+        <div class="val" id="rate">–</div>
+      </div>
+      <div class="divider"></div>
+      <div class="right">
+        <div class="lab">기준일</div>
+        <div class="upd" id="upd">불러오는 중…</div>
+      </div>
     </div>
   </div>
 
