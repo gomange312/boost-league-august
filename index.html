@@ -148,14 +148,39 @@ h1 .l2{
 .rank-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:16px}
 .rank-head h3{font-size:18px;font-weight:900;letter-spacing:-.4px}
 .rank-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.rank-col h4{font-size:13.5px;font-weight:800;color:var(--blue);padding-bottom:9px;border-bottom:2px solid #e5eef8;margin-bottom:4px}
-.rank-row{display:flex;align-items:center;gap:9px;padding:10px 4px;border-bottom:1px solid #f0f5fb;font-size:13px}
-.rank-row .n{width:20px;height:20px;border-radius:50%;background:#eef4fc;color:#4a6b9a;font-size:11px;font-weight:800;display:grid;place-items:center;flex:none}
-.rank-row.top1 .n{background:linear-gradient(135deg,#f6b93b,#e8a01c);color:#fff}
-.rank-row.top2 .n{background:linear-gradient(135deg,#c3ccd6,#a8b3c0);color:#fff}
-.rank-row.top3 .n{background:linear-gradient(135deg,#d9a273,#c4864f);color:#fff}
-.rank-row .t{flex:1;font-weight:700;letter-spacing:-.3px}
-.rank-row .v{font-weight:800;color:#123fbe;font-variant-numeric:tabular-nums}
+.rank-col{border:1px solid #e6eef8;border-radius:16px;overflow:hidden;background:#fff}
+.rc-head{
+  display:flex;align-items:center;gap:10px;padding:13px 15px;color:#fff;
+  font-size:14px;font-weight:900;letter-spacing:-.4px;
+}
+.rc-head .rc-ico{
+  width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.24);
+  display:grid;place-items:center;font-size:15px;flex:none;
+  box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.5);
+}
+.rc-head.h1{background:linear-gradient(135deg,#1d4fc4,#1668d8)}
+.rc-head.h2{background:linear-gradient(135deg,#1f7ed4,#2f9bdf)}
+.rc-head.h3{background:linear-gradient(135deg,#2ba3d8,#4ec6e8)}
+.rank-body{padding:6px 12px 12px}
+.rank-row{display:flex;align-items:center;gap:11px;padding:11px 4px;border-bottom:1px solid #f0f5fb;font-size:13.5px}
+.rank-row:last-child{border-bottom:0}
+.tro{position:relative;width:38px;flex:none;text-align:center;line-height:1}
+.tro .ic{font-size:27px;filter:drop-shadow(0 3px 5px rgba(8,50,120,.25));display:block}
+.tro .rk{
+  position:absolute;left:50%;bottom:-4px;transform:translateX(-50%);
+  min-width:17px;height:17px;padding:0 4px;border-radius:9px;
+  font-size:10.5px;font-weight:900;color:#fff;display:grid;place-items:center;
+  border:1.5px solid #fff;box-shadow:0 2px 5px rgba(8,50,120,.28);
+}
+.rank-row.r1 .rk{background:linear-gradient(135deg,#f6b93b,#e0940c)}
+.rank-row.r2 .rk{background:linear-gradient(135deg,#c3ccd6,#98a4b2)}
+.rank-row.r3 .rk{background:linear-gradient(135deg,#d9a273,#b9773f)}
+.rank-row.r1{background:linear-gradient(90deg,rgba(246,185,59,.13),transparent 60%);border-radius:10px}
+.rank-row.r2{background:linear-gradient(90deg,rgba(168,179,192,.13),transparent 60%);border-radius:10px}
+.rank-row.r3{background:linear-gradient(90deg,rgba(196,134,79,.12),transparent 60%);border-radius:10px}
+.rank-row .t{flex:1;font-weight:800;letter-spacing:-.3px;color:#12305e}
+.rank-row.r1 .t{font-size:14.5px}
+.rank-row .v{font-weight:800;color:#123fbe;font-variant-numeric:tabular-nums;font-size:12.5px}
 .empty{text-align:center;padding:34px 10px;color:#8ea3c1;font-size:13.5px;font-weight:600;line-height:1.8}
 .note-box{
   max-width:640px;margin:-14px auto 30px;background:rgba(255,255,255,.92);
@@ -164,13 +189,15 @@ h1 .l2{
   box-shadow:0 10px 26px rgba(8,50,120,.18);text-align:center;
 }
 .cand-label{
-  margin:12px 0 4px;font-size:11px;font-weight:800;color:#9bb0ca;letter-spacing:.6px;
+  margin:10px 0 2px;font-size:10.5px;font-weight:800;color:#9bb0ca;letter-spacing:.6px;
   padding-top:9px;border-top:1px dashed #e2eaf4;
 }
-.rank-row.cand{color:#93a8c4;font-weight:600}
-.rank-row.cand .n{background:#f2f6fb;color:#9bb0ca}
-.rank-row.cand .t{font-weight:600}
-.rank-row.cand .v{color:#93a8c4;font-weight:600}
+.rank-row.cand{background:none;font-size:12.5px;padding:7px 4px}
+.rank-row.cand .tro{width:26px}
+.rank-row.cand .tro .ic{font-size:15px;opacity:.5}
+.rank-row.cand .rk{background:#cfdaea;bottom:-3px;min-width:15px;height:15px;font-size:9.5px}
+.rank-row.cand .t{font-weight:600;color:#93a8c4;font-size:12.5px}
+.rank-row.cand .v{color:#a8b9cf;font-weight:600;font-size:11.5px}
 .btn{
   background:linear-gradient(135deg,#1668d8,#2f9bdf);color:#fff;border:0;border-radius:999px;
   padding:9px 18px;font-size:12.5px;font-weight:800;cursor:pointer;font-family:inherit;
@@ -309,16 +336,16 @@ footer{margin-top:34px;text-align:center;color:rgba(255,255,255,.9);font-size:12
       </div>
       <div class="rank-grid" id="rank-grid">
         <div class="rank-col">
-          <h4>증액금액 TOP3</h4>
-          <div class="empty">8월 실적 집계 후<br>순위가 공개됩니다</div>
+          <div class="rc-head h1"><span class="rc-ico">₩</span><span>증액금액 TOP3</span></div>
+          <div class="rank-body"><div class="empty">불러오는 중…</div></div>
         </div>
         <div class="rank-col">
-          <h4>증액률 TOP3</h4>
-          <div class="empty">8월 실적 집계 후<br>순위가 공개됩니다</div>
+          <div class="rc-head h2"><span class="rc-ico">📈</span><span>증액률 TOP3</span></div>
+          <div class="rank-body"><div class="empty">불러오는 중…</div></div>
         </div>
         <div class="rank-col">
-          <h4>증액 광고주수 TOP3</h4>
-          <div class="empty">8월 실적 집계 후<br>순위가 공개됩니다</div>
+          <div class="rc-head h3"><span class="rc-ico">👥</span><span>증액 광고주수 TOP3</span></div>
+          <div class="rank-body"><div class="empty">불러오는 중…</div></div>
         </div>
       </div>
     </div>
@@ -360,7 +387,12 @@ const SHEET_CSV_URL = PUB_CSV_URL ||
    증액 광고주수 1등 / 2등 / 3등  | …                |
    ※ 항목명 띄어쓰기는 자유롭게 써도 인식됩니다.                       */
 
-const LABELS = [['amount','증액금액 TOP3'],['growth','증액률 TOP3'],['clients','증액 광고주수 TOP3']];
+const LABELS = [
+  ['amount', '증액금액 TOP3',     '₩',  'h1'],
+  ['growth', '증액률 TOP3',       '📈', 'h2'],
+  ['clients','증액 광고주수 TOP3','👥', 'h3'],
+];
+const TROPHY = { 1:'🏆', 2:'🥈', 3:'🥉' };
 const DATA = { updated:'', rate:'', note:'',
                amount:[], growth:[], clients:[],
                amountC:[], growthC:[], clientsC:[] };
@@ -427,16 +459,23 @@ function render(){
   const noteEl = document.getElementById('note');
   if(DATA.note){ noteEl.textContent = DATA.note; noteEl.style.display = ''; }
   else { noteEl.style.display = 'none'; }
-  document.getElementById('rank-grid').innerHTML = LABELS.map(([key,title])=>{
+  document.getElementById('rank-grid').innerHTML = LABELS.map(([key,title,ico,cls])=>{
     const list = DATA[key] || [], cand = DATA[key+'C'] || [];
     let inner = list.length
-      ? list.map(x=>`<div class="rank-row top${x.rank}"><div class="n">${x.rank}</div><div class="t">${esc(x.team)}</div><div class="v">${esc(x.memo)}</div></div>`).join('')
+      ? list.map(x=>`<div class="rank-row r${x.rank}">
+           <div class="tro"><span class="ic">${TROPHY[x.rank]||'🏅'}</span><span class="rk">${x.rank}</span></div>
+           <div class="t">${esc(x.team)}</div><div class="v">${esc(x.memo)}</div></div>`).join('')
       : '<div class="empty">8월 실적 집계 후<br>순위가 공개됩니다</div>';
     if(cand.length){
       inner += '<div class="cand-label">후보</div>' + cand.map(x=>
-        `<div class="rank-row cand"><div class="n">${x.rank}</div><div class="t">${esc(x.team)}</div><div class="v">${esc(x.memo)}</div></div>`).join('');
+        `<div class="rank-row cand">
+           <div class="tro"><span class="ic">🏅</span><span class="rk">${x.rank}</span></div>
+           <div class="t">${esc(x.team)}</div><div class="v">${esc(x.memo)}</div></div>`).join('');
     }
-    return `<div class="rank-col"><h4>${title}</h4>${inner}</div>`;
+    return `<div class="rank-col">
+        <div class="rc-head ${cls}"><span class="rc-ico">${ico}</span><span>${title}</span></div>
+        <div class="rank-body">${inner}</div>
+      </div>`;
   }).join('');
 }
 
