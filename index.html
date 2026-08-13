@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google" content="notranslate">
+<title>네이버 8월 매출 Boost League</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
+<style>
+:root{
+  --deep:#0b3fa8;
+  --blue:#1668d8;
+  --sky:#2f9bdf;
+  --cyan:#43c0e6;
+  --ink:#0a2a5e;
+  --white:#ffffff;
+  --gold:#f6b93b;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Pretendard',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  color:var(--ink);
+  background:linear-gradient(180deg,#7fd4f0 0%,#4fbbe8 22%,#2b9fdb 55%,#1b7fc8 100%);
+  min-height:100vh;
+  position:relative;
+  overflow-x:hidden;
+}
+/* 물결 텍스처 */
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:
+    radial-gradient(ellipse 900px 120px at 20% 12%,rgba(255,255,255,.28),transparent 70%),
+    radial-gradient(ellipse 700px 90px at 78% 28%,rgba(255,255,255,.22),transparent 70%),
+    radial-gradient(ellipse 800px 110px at 40% 52%,rgba(255,255,255,.16),transparent 70%),
+    radial-gradient(ellipse 600px 80px at 85% 72%,rgba(255,255,255,.18),transparent 70%),
+    radial-gradient(ellipse 700px 100px at 15% 88%,rgba(255,255,255,.14),transparent 70%);
+  animation:drift 18s ease-in-out infinite alternate;
+}
+@keyframes drift{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(-18px,10px,0) scale(1.03)}}
+/* 야자수 잎 */
+.leaf{position:fixed;z-index:0;opacity:.5;pointer-events:none}
+.leaf.tl{top:-40px;left:-60px;width:280px;transform:rotate(-12deg)}
+.leaf.tr{top:-30px;right:-70px;width:250px;transform:scaleX(-1) rotate(-8deg)}
+.leaf.bl{bottom:-50px;left:-50px;width:240px;transform:rotate(160deg)}
+.leaf.br{bottom:-60px;right:-60px;width:270px;transform:scaleX(-1) rotate(155deg)}
+.wrap{position:relative;z-index:1;max-width:1120px;margin:0 auto;padding:34px 20px 60px}
+
+/* 상단 배지 */
+.top-badges{display:flex;flex-direction:column;gap:10px;align-items:flex-start;position:absolute;top:34px;left:20px;z-index:3}
+.badge-bubble{
+  background:var(--deep);color:#fff;font-weight:800;font-size:13px;line-height:1.3;
+  padding:11px 16px;border-radius:16px;text-align:center;letter-spacing:-.2px;
+  box-shadow:0 6px 18px rgba(11,63,168,.35);position:relative;
+}
+.badge-bubble::after{
+  content:'';position:absolute;left:18px;bottom:-8px;width:0;height:0;
+  border:9px solid transparent;border-top-color:var(--deep);border-bottom:0;
+}
+.badge-bubble.wave{animation:bob 2.6s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+
+/* 헤더 */
+header{text-align:center;padding:6px 0 26px}
+.ribbon{
+  display:inline-block;background:var(--deep);color:#fff;
+  font-size:13.5px;font-weight:700;letter-spacing:-.2px;
+  padding:9px 26px;border-radius:999px;margin-bottom:22px;
+  box-shadow:0 6px 18px rgba(11,63,168,.3);
+}
+.ribbon i{font-style:italic;font-family:Georgia,'Times New Roman',serif;font-weight:700}
+h1{font-size:clamp(34px,6.4vw,68px);line-height:1.06;letter-spacing:-1.5px;font-weight:900}
+h1 .l1{
+  display:block;color:#123fbe;
+  text-shadow:2px 2px 0 #fff,-2px 2px 0 #fff,2px -2px 0 #fff,-2px -2px 0 #fff,0 8px 22px rgba(9,45,120,.35);
+}
+h1 .l2{
+  display:block;margin-top:6px;color:#fff;
+  font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:1.12em;
+  text-shadow:0 4px 0 #1668d8,0 9px 26px rgba(6,40,110,.45);
+}
+.sub{margin-top:18px;color:#fff;font-size:15.5px;font-weight:600;text-shadow:0 2px 8px rgba(6,40,110,.4)}
+
+/* 달성 현황 */
+.status{
+  margin:26px auto 30px;max-width:640px;background:rgba(255,255,255,.94);
+  border-radius:20px;padding:22px 26px;box-shadow:0 14px 34px rgba(8,50,120,.22);
+  display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;
+}
+.status .lab{font-size:13px;font-weight:700;color:#5b7ba8;letter-spacing:-.2px}
+.status .val{font-size:34px;font-weight:900;color:var(--blue);line-height:1.1}
+.status .upd{font-size:12.5px;color:#7d93b4;font-weight:600}
+.status .divider{width:1px;align-self:stretch;background:#e3ebf5}
+
+/* 카드 */
+.section-title{text-align:center;color:#fff;font-size:20px;font-weight:800;margin:6px 0 20px;text-shadow:0 2px 10px rgba(6,40,110,.45)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{
+  background:rgba(255,255,255,.96);border-radius:22px;overflow:hidden;
+  box-shadow:0 16px 40px rgba(8,50,120,.24);display:flex;flex-direction:column;
+  transition:transform .25s ease,box-shadow .25s ease;
+}
+.card:hover{transform:translateY(-6px);box-shadow:0 22px 50px rgba(8,50,120,.32)}
+.card .icon{
+  width:48px;height:48px;border-radius:50%;display:grid;place-items:center;
+  margin:0 auto -24px;position:relative;top:-24px;font-size:22px;
+  border:4px solid #fff;box-shadow:0 4px 14px rgba(8,50,120,.25);
+}
+.card h2{font-size:20px;font-weight:900;letter-spacing:-.5px;color:#fff;text-align:center}
+.card .head{padding:26px 18px 20px;text-align:center}
+.card .head p{margin-top:7px;font-size:12px;color:rgba(255,255,255,.9);font-weight:600}
+.c1 .head{background:linear-gradient(135deg,#1d4fc4,#1668d8)}
+.c2 .head{background:linear-gradient(135deg,#1f7ed4,#2f9bdf)}
+.c3 .head{background:linear-gradient(135deg,#2ba3d8,#4ec6e8)}
+.c1 .icon{background:#1d4fc4;color:#fff}
+.c2 .icon{background:#1f7ed4;color:#fff}
+.c3 .icon{background:#2ba3d8;color:#fff}
+.card .body{padding:8px 18px 18px;display:flex;flex-direction:column;gap:6px}
+.prize{display:flex;align-items:center;gap:13px;padding:14px 8px;border-bottom:1px dashed #e2eaf4}
+.prize:last-of-type{border-bottom:0}
+.medal{font-size:30px;line-height:1;filter:drop-shadow(0 3px 5px rgba(8,50,120,.22))}
+.prize .info{flex:1}
+.prize .total{font-size:21px;font-weight:900;color:#123fbe;letter-spacing:-.6px}
+.prize .split{margin-top:4px;font-size:11.5px;color:#6b81a3;font-weight:600;line-height:1.55}
+.vip{
+  margin:4px 14px 18px;background:linear-gradient(135deg,#fff8e6,#ffeec2);
+  border:1.5px solid #f3d18a;border-radius:14px;padding:11px 14px;text-align:center;
+}
+.vip .tag{
+  display:inline-block;background:var(--gold);color:#5a3d05;font-size:10.5px;font-weight:900;
+  padding:3px 10px;border-radius:999px;letter-spacing:.4px;margin-bottom:6px;
+}
+.vip .team{font-size:14px;font-weight:900;color:#8a6410;letter-spacing:-.3px}
+.vip .note{margin-top:3px;font-size:10.5px;color:#a1802f;font-weight:600}
+
+/* 조건 */
+.terms{
+  margin-top:24px;background:var(--deep);color:#fff;border-radius:18px;padding:18px 24px;
+  box-shadow:0 12px 30px rgba(8,45,120,.3);
+}
+.terms .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:center;font-size:13px;font-weight:700}
+.terms .row span{opacity:.55}
+.terms .fine{margin-top:11px;padding-top:11px;border-top:1px solid rgba(255,255,255,.22);font-size:11.5px;line-height:1.7;color:rgba(255,255,255,.85);font-weight:500;text-align:center}
+
+/* 순위 */
+.rank-wrap{margin-top:34px}
+.rank-box{background:rgba(255,255,255,.96);border-radius:22px;padding:26px;box-shadow:0 16px 40px rgba(8,50,120,.22)}
+.rank-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.rank-head h3{font-size:18px;font-weight:900;letter-spacing:-.4px}
+.rank-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.rank-col h4{font-size:13.5px;font-weight:800;color:var(--blue);padding-bottom:9px;border-bottom:2px solid #e5eef8;margin-bottom:4px}
+.rank-row{display:flex;align-items:center;gap:9px;padding:10px 4px;border-bottom:1px solid #f0f5fb;font-size:13px}
+.rank-row .n{width:20px;height:20px;border-radius:50%;background:#eef4fc;color:#4a6b9a;font-size:11px;font-weight:800;display:grid;place-items:center;flex:none}
+.rank-row.top1 .n{background:linear-gradient(135deg,#f6b93b,#e8a01c);color:#fff}
+.rank-row.top2 .n{background:linear-gradient(135deg,#c3ccd6,#a8b3c0);color:#fff}
+.rank-row.top3 .n{background:linear-gradient(135deg,#d9a273,#c4864f);color:#fff}
+.rank-row .t{flex:1;font-weight:700;letter-spacing:-.3px}
+.rank-row .v{font-weight:800;color:#123fbe;font-variant-numeric:tabular-nums}
+.empty{text-align:center;padding:34px 10px;color:#8ea3c1;font-size:13.5px;font-weight:600;line-height:1.8}
+.note-box{
+  max-width:640px;margin:-14px auto 30px;background:rgba(255,255,255,.92);
+  border-left:5px solid var(--gold);border-radius:14px;padding:14px 20px;
+  font-size:14.5px;font-weight:700;color:#0a2a5e;line-height:1.6;
+  box-shadow:0 10px 26px rgba(8,50,120,.18);text-align:center;
+}
+.cand-label{
+  margin:12px 0 4px;font-size:11px;font-weight:800;color:#9bb0ca;letter-spacing:.6px;
+  padding-top:9px;border-top:1px dashed #e2eaf4;
+}
+.rank-row.cand{color:#93a8c4;font-weight:600}
+.rank-row.cand .n{background:#f2f6fb;color:#9bb0ca}
+.rank-row.cand .t{font-weight:600}
+.rank-row.cand .v{color:#93a8c4;font-weight:600}
+.btn{
+  background:linear-gradient(135deg,#1668d8,#2f9bdf);color:#fff;border:0;border-radius:999px;
+  padding:9px 18px;font-size:12.5px;font-weight:800;cursor:pointer;font-family:inherit;
+  box-shadow:0 5px 14px rgba(22,104,216,.35);transition:transform .15s ease,box-shadow .15s ease;
+}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(22,104,216,.45)}
+.btn:active{transform:translateY(0)}
+.btn:disabled{opacity:.6;cursor:default;transform:none}
+footer{margin-top:34px;text-align:center;color:rgba(255,255,255,.9);font-size:12px;font-weight:700;letter-spacing:.4px;text-shadow:0 2px 8px rgba(6,40,110,.4)}
+
+@media(max-width:900px){
+  .cards,.rank-grid{grid-template-columns:1fr}
+  .top-badges{position:static;flex-direction:row;justify-content:center;margin-bottom:18px}
+  .badge-bubble::after{display:none}
+  .leaf{display:none}
+  .status{flex-direction:column;text-align:center}
+  .status .divider{display:none}
+}
+</style>
+</head>
+<body>
+
+<svg class="leaf tl" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><g fill="#0f9d78" opacity=".85"><path d="M100 190C100 190 8 150 12 62c40 22 66 54 78 96 10-46 34-78 76-98 6 88-66 130-66 130z"/><path d="M98 188C86 140 60 96 18 66c34 40 60 84 74 122z" fill="#0b7f60"/></g></svg>
+<svg class="leaf tr" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><g fill="#12ab86" opacity=".8"><path d="M100 190C100 190 8 150 12 62c40 22 66 54 78 96 10-46 34-78 76-98 6 88-66 130-66 130z"/></g></svg>
+<svg class="leaf bl" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><g fill="#0f9d78" opacity=".75"><path d="M100 190C100 190 8 150 12 62c40 22 66 54 78 96 10-46 34-78 76-98 6 88-66 130-66 130z"/></g></svg>
+<svg class="leaf br" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><g fill="#12ab86" opacity=".8"><path d="M100 190C100 190 8 150 12 62c40 22 66 54 78 96 10-46 34-78 76-98 6 88-66 130-66 130z"/></g></svg>
+
+<div class="wrap">
+
+  <div class="top-badges">
+    <div class="badge-bubble wave">올여름<br>마지막!</div>
+    <div class="badge-bubble">COMING<br>BACK SOON</div>
+  </div>
+
+  <header>
+    <div class="ribbon">증액 금액 · 증액률 · 광고주수로 겨루는 8월 네이버 <i>Boost League</i></div>
+    <h1>
+      <span class="l1">네이버 8월 매출</span>
+      <span class="l2">Boost League</span>
+    </h1>
+    <p class="sub">여름의 마지막 스퍼트 — 8월 한 달, 다시 한번 달려봅니다 🌊</p>
+  </header>
+
+  <div class="status">
+    <div>
+      <div class="lab">SA 프로모션 현재 달성율</div>
+      <div class="val" id="rate">–</div>
+    </div>
+    <div class="divider"></div>
+    <div>
+      <div class="lab">기준일</div>
+      <div class="upd" id="upd">불러오는 중…</div>
+    </div>
+  </div>
+
+  <div class="note-box" id="note" style="display:none"></div>
+
+  <div class="section-title">💰 부문별 리워드</div>
+
+  <div class="cards">
+
+    <div class="card c1">
+      <div class="head">
+        <h2>증액금액 MoM TOP3</h2>
+        <p>전월 대비 매출 증액금액 기준</p>
+      </div>
+      <div class="icon">₩</div>
+      <div class="body">
+        <div class="prize"><div class="medal">🥇</div><div class="info"><div class="total">총 600만원</div><div class="split">팀 경비 300만 · 개인계좌지급 300만</div></div></div>
+        <div class="prize"><div class="medal">🥈</div><div class="info"><div class="total">총 400만원</div><div class="split">팀 경비 200만 · 개인계좌지급 200만</div></div></div>
+        <div class="prize"><div class="medal">🥉</div><div class="info"><div class="total">총 300만원</div><div class="split">팀 경비 150만 · 개인계좌지급 150만</div></div></div>
+      </div>
+      <div class="vip">
+        <div class="tag">★ 7월 CHAMPION ★</div>
+        <div class="team">데이터마케팅1팀</div>
+      </div>
+    </div>
+
+    <div class="card c2">
+      <div class="head">
+        <h2>증액률 MoM TOP3</h2>
+        <p>전월 대비 매출 증액률 기준</p>
+      </div>
+      <div class="icon">📊</div>
+      <div class="body">
+        <div class="prize"><div class="medal">🥇</div><div class="info"><div class="total">총 300만원</div><div class="split">팀 경비 150만 · 개인계좌지급 150만</div></div></div>
+        <div class="prize"><div class="medal">🥈</div><div class="info"><div class="total">총 250만원</div><div class="split">팀 경비 125만 · 개인계좌지급 125만</div></div></div>
+        <div class="prize"><div class="medal">🥉</div><div class="info"><div class="total">총 200만원</div><div class="split">팀 경비 100만 · 개인계좌지급 100만</div></div></div>
+      </div>
+      <div class="vip">
+        <div class="tag">★ 7월 CHAMPION ★</div>
+        <div class="team">데이터마케팅2팀</div>
+      </div>
+    </div>
+
+    <div class="card c3">
+      <div class="head">
+        <h2>증액 광고주수 TOP3</h2>
+        <p>100만원 이상 증액 광고주 수 기준 (MoM)</p>
+      </div>
+      <div class="icon">👥</div>
+      <div class="body">
+        <div class="prize"><div class="medal">🥇</div><div class="info"><div class="total">총 200만원</div><div class="split">팀 경비 100만 · 개인계좌지급 100만</div></div></div>
+        <div class="prize"><div class="medal">🥈</div><div class="info"><div class="total">총 150만원</div><div class="split">팀 경비 75만 · 개인계좌지급 75만</div></div></div>
+        <div class="prize"><div class="medal">🥉</div><div class="info"><div class="total">총 100만원</div><div class="split">팀 경비 50만 · 개인계좌지급 50만</div></div></div>
+      </div>
+      <div class="vip">
+        <div class="tag">★ 7월 CHAMPION ★</div>
+        <div class="team">퍼포먼스마케팅3팀</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="terms">
+    <div class="row">
+      <div>✳ 필수 조건</div><span>|</span>
+      <div>네이버 SA (파워링크 + 쇼핑검색광고) 기준</div><span>|</span>
+      <div>매체 프로모션 달성 시에 한해 조건부 지급</div><span>|</span>
+      <div>8월 이관 광고주 제외</div>
+    </div>
+    <div class="fine">
+      한 팀이 여러 부문 상위에 들 경우 증액금액 → 증액률 → 증액광고주수 순으로 배정되며, 중복 수상은 불가합니다.<br>
+      공동 담당(콜라보) 광고주는 담당AE 배분 비율만큼 팀별로 반영되며, 개인계좌지급분은 팀 내 기여도에 따라 분배합니다.
+    </div>
+  </div>
+
+  <div class="rank-wrap">
+    <div class="rank-box">
+      <div class="rank-head">
+        <h3>🏆 부문별 순위 현황</h3>
+        <div style="display:flex;align-items:center;gap:12px">
+          <div class="upd" id="rank-upd">불러오는 중…</div>
+          <button id="reload" class="btn">🔄 최신 순위 불러오기</button>
+        </div>
+      </div>
+      <div class="rank-grid" id="rank-grid">
+        <div class="rank-col">
+          <h4>증액금액 TOP3</h4>
+          <div class="empty">8월 실적 집계 후<br>순위가 공개됩니다</div>
+        </div>
+        <div class="rank-col">
+          <h4>증액률 TOP3</h4>
+          <div class="empty">8월 실적 집계 후<br>순위가 공개됩니다</div>
+        </div>
+        <div class="rank-col">
+          <h4>증액 광고주수 TOP3</h4>
+          <div class="empty">8월 실적 집계 후<br>순위가 공개됩니다</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>NAVER AUGUST REVENUE BOOST LEAGUE · PlayD</footer>
+</div>
+
+<script>
+/* ══════════════════════════════════════════════════════════════
+   구글 스프레드시트 연동 설정  (연결 완료)
+   ──────────────────────────────────────────────────────────────
+   연결된 시트
+   https://docs.google.com/spreadsheets/d/1i4-aH4mLN8ug_N5sipnokFDKpEWTr6rhM2NejnVdQTM/edit?gid=896188499
+
+   ★ 시트 공유 설정 필수 ★
+   구글 시트 우측 상단 [공유] > 일반 액세스 >
+   "링크가 있는 모든 사용자" + 뷰어 로 설정해야 페이지에서 읽을 수 있습니다.
+
+   (선택) 위 설정이 사내 정책상 불가하면
+   파일 > 공유 > 웹에 게시 > CSV 로 게시한 뒤 그 주소를 PUB_CSV_URL 에 넣어주세요.
+   ══════════════════════════════════════════════════════════════ */
+const SHEET_ID  = '1i4-aH4mLN8ug_N5sipnokFDKpEWTr6rhM2NejnVdQTM';
+const SHEET_GID = '896188499';
+const PUB_CSV_URL = '';   // 웹에 게시 방식 사용할 경우에만 입력
+
+const SHEET_CSV_URL = PUB_CSV_URL ||
+  `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&gid=${SHEET_GID}`;
+
+/* ── 시트 형식 (A: 카테고리 / B: 입력값 / C: 추가 코멘트) ──
+   카테고리                    | 입력값            | 추가 코멘트
+   업데이트 일자                | 8/12             |
+   SA 프로모션 현재 달성율        | 39%              |
+   코멘트                      | 힘내주세요!        |
+   증액금액 1등                 | 퍼포먼스마케팅2팀   | (선택) 수치·메모
+   증액금액2등 / 증액금액 3등     | …                |
+   증액금액 후보 4등 / 5등        | …                |
+   증액률 1등 / 2등 / 3등        | …                |
+   증액 광고주수 1등 / 2등 / 3등  | …                |
+   ※ 항목명 띄어쓰기는 자유롭게 써도 인식됩니다.                       */
+
+const LABELS = [['amount','증액금액 TOP3'],['growth','증액률 TOP3'],['clients','증액 광고주수 TOP3']];
+const DATA = { updated:'', rate:'', note:'',
+               amount:[], growth:[], clients:[],
+               amountC:[], growthC:[], clientsC:[] };
+
+function parseCSV(text){
+  const rows = []; let row = [], cell = '', q = false;
+  for(let i=0;i<text.length;i++){
+    const ch = text[i];
+    if(q){
+      if(ch === '"'){ if(text[i+1] === '"'){ cell += '"'; i++; } else q = false; }
+      else cell += ch;
+    } else {
+      if(ch === '"') q = true;
+      else if(ch === ','){ row.push(cell); cell = ''; }
+      else if(ch === '\n'){ row.push(cell); rows.push(row); row = []; cell = ''; }
+      else if(ch !== '\r') cell += ch;
+    }
+  }
+  if(cell !== '' || row.length){ row.push(cell); rows.push(row); }
+  return rows;
+}
+
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function applyRows(rows){
+  ['amount','growth','clients'].forEach(k => { DATA[k] = []; DATA[k+'C'] = []; });
+  DATA.updated = DATA.rate = DATA.note = '';
+  rows.forEach(r => {
+    const raw  = (r[0]||'').trim();
+    const key  = raw.replace(/\s/g,'');          // 띄어쓰기 무시
+    const val  = (r[1]||'').trim();
+    const memo = (r[2]||'').trim();
+    if(!key || !val) return;
+    if(key.includes('업데이트')){ DATA.updated = val; return; }
+    if(key.includes('코멘트') && !key.includes('추가')){ DATA.note = val; return; }
+    if(key.includes('달성율')){
+      if(!key.includes('GFA')) DATA.rate = val;   // GFA는 페이지에 표시하지 않음
+      return;
+    }
+    // 부문 판별
+    let sec = null;
+    if(key.includes('증액금액')) sec = 'amount';
+    else if(key.includes('증액률')) sec = 'growth';
+    else if(key.includes('광고주수')) sec = 'clients';
+    if(!sec) return;
+    const m = key.match(/(\d)등/);
+    if(!m) return;
+    const rank = parseInt(m[1], 10);
+    const isCand = key.includes('후보');
+    const item = { rank, team: val, memo };
+    (isCand ? DATA[sec+'C'] : DATA[sec]).push(item);
+  });
+  ['amount','growth','clients'].forEach(k => {
+    DATA[k].sort((a,b)=>a.rank-b.rank);
+    DATA[k+'C'].sort((a,b)=>a.rank-b.rank);
+  });
+}
+
+function render(){
+  document.getElementById('rate').textContent = DATA.rate || '집계 예정';
+  const upd = DATA.updated ? `${DATA.updated} 기준` : '8월 실적 집계 시작 후 업데이트';
+  document.getElementById('upd').textContent = upd;
+  document.getElementById('rank-upd').textContent = upd;
+  const noteEl = document.getElementById('note');
+  if(DATA.note){ noteEl.textContent = DATA.note; noteEl.style.display = ''; }
+  else { noteEl.style.display = 'none'; }
+  document.getElementById('rank-grid').innerHTML = LABELS.map(([key,title])=>{
+    const list = DATA[key] || [], cand = DATA[key+'C'] || [];
+    let inner = list.length
+      ? list.map(x=>`<div class="rank-row top${x.rank}"><div class="n">${x.rank}</div><div class="t">${esc(x.team)}</div><div class="v">${esc(x.memo)}</div></div>`).join('')
+      : '<div class="empty">8월 실적 집계 후<br>순위가 공개됩니다</div>';
+    if(cand.length){
+      inner += '<div class="cand-label">후보</div>' + cand.map(x=>
+        `<div class="rank-row cand"><div class="n">${x.rank}</div><div class="t">${esc(x.team)}</div><div class="v">${esc(x.memo)}</div></div>`).join('');
+    }
+    return `<div class="rank-col"><h4>${title}</h4>${inner}</div>`;
+  }).join('');
+}
+
+async function load(){
+  const btn = document.getElementById('reload');
+  btn.disabled = true; btn.textContent = '불러오는 중…';
+  const candidates = [SHEET_CSV_URL];
+  if(!PUB_CSV_URL){
+    candidates.push(`https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=${SHEET_GID}`);
+  }
+  let ok = false;
+  for(const base of candidates){
+    try{
+      const url = base + (base.includes('?') ? '&' : '?') + 't=' + Date.now();
+      const res = await fetch(url, { cache: 'no-store' });
+      if(!res.ok) continue;
+      const text = await res.text();
+      if(/^\s*</.test(text)) continue;          // 로그인 페이지(HTML)가 오면 실패로 간주
+      applyRows(parseCSV(text));
+      ok = true; break;
+    }catch(e){ /* 다음 후보 시도 */ }
+  }
+  render();
+  if(!ok){
+    document.getElementById('rank-upd').textContent =
+      '불러오기 실패 — 구글 시트 공유를 "링크가 있는 모든 사용자"로 설정해 주세요';
+  }
+  btn.disabled = false; btn.textContent = '🔄 최신 순위 불러오기';
+}
+document.getElementById('reload').addEventListener('click', load);
+load();
+setInterval(load, 5 * 60 * 1000);   // 5분마다 자동 갱신
+</script>
+</body>
+</html>
